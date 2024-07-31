@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 pytest = "^8.2.2"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.lint.dependencies]
@@ -29,8 +31,16 @@ line-length = 119
 exclude = '''
 (
   /(
-      \.git
+      \.eggs         # Исключить несколько общих каталогов
+    | \.git          # в корне проекта
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | dist
   )/
+  | foo.py           # Также отдельно исключить файл с именем foo.py
+                     # в корне проекта
 )
 '''
 
