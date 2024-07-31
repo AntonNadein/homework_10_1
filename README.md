@@ -49,12 +49,18 @@ Homework_10 - это домашняя работа на Python для SkyPro в 
 9. Генератор *card_number_generator*, который выдает номера банковских карт в формате **XXXX XXXX XXXX XXXX**
 10. Дероратор *log* проверяет функции на  наличие ошибок, принимает необязательный аргумент **filename**, который 
 определяет имя файла, в который будут записываться логи. Если **filename** не задан, то логи выводятся в консоль.
+11. Функция *json_to_dict*, которая принимает на вход имя файла, с расширением JSON и возвращает список словарей 
+с данными о финансовых транзакциях.
+12. Функция *amount_transaction_rub*, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях, 
+тип данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего 
+курса валют и конвертации суммы операции в рубли. Для конвертации валюты используется **Exchange Rates Data API**
 
 ## Тестирование:
 
 Для тестироваия используйте файлы **[test_masks.py](tests%2Ftest_masks.py),
 [test_processing.py](tests%2Ftest_processing.py), [test_widget.py](tests%2Ftest_widget.py), 
-[test_generators.py](tests%2Ftest_generators.py), [test_decorators.py](tests%2Ftest_decorators.py)**
+[test_generators.py](tests%2Ftest_generators.py), [test_decorators.py](tests%2Ftest_decorators.py), 
+[test_utils.py](tests%2Ftest_utils.py), [test_external_api.py](tests%2Ftest_external_api.py)**
 test coverage [index.html](htmlcov%2Findex.html)
 
 ## Лицензия:
