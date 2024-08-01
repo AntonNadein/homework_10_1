@@ -5,6 +5,9 @@
 Homework_10 - это домашняя работа на Python для SkyPro в которой реализуются функции, декораторы, генераторы.
 
 ## Использование:
+Запуск функционала производится при помощи файла *main.py*
+
+## Документация:
 
 1. Функцию маскировки номера банковского счета *get_mask_account* которая принимает на вход номер счета в виде числа и
    возвращает маску номера по правилу
@@ -56,7 +59,7 @@ Homework_10 - это домашняя работа на Python для SkyPro в 
 курса валют и конвертации суммы операции в рубли. Для конвертации валюты используется **Exchange Rates Data API**
 
 ## Тестирование:
-
+Добавлено логгирование функций в модулях *masks* и *utils*:
 Для тестироваия используйте файлы **[test_masks.py](tests%2Ftest_masks.py),
 [test_processing.py](tests%2Ftest_processing.py), [test_widget.py](tests%2Ftest_widget.py), 
 [test_generators.py](tests%2Ftest_generators.py), [test_decorators.py](tests%2Ftest_decorators.py), 
