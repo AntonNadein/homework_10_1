@@ -7,7 +7,11 @@ from src.open_file import open_csv, open_excel, path_to_file
 
 def test_path_to_file():
     """тест пути файла"""
-    assert path_to_file("test.src") == "C:\\Users\\Антон\\Desktop\\PyProject\\homework_10_1\\src\\..\\data\\test.src"
+    assert (
+        path_to_file("test.src")
+        == "C:\\Users\\Антон\\Desktop\\PyProject\\"
+           "homework_10_1\\src\\..\\data\\test.src"
+    )
 
 
 def test_error_open_csv():
@@ -26,7 +30,17 @@ def test_error_open_excel():
 def test_open_csv(mocked_csv):
     """Проверка нормальной работы"""
     mocked_csv.return_value = [
-        ["is", "state", "date", "amount", "currency_name", "currency_code", "from", "to", "description"]
+        [
+            "is",
+            "state",
+            "date",
+            "amount",
+            "currency_name",
+            "currency_code",
+            "from",
+            "to",
+            "description",
+        ]
     ]
     result = open_csv("transaction.csv")
     assert result == [
@@ -35,7 +49,10 @@ def test_open_csv(mocked_csv):
             "description": "description",
             "from": "from",
             "id": "is",
-            "operationAmount": {"amount": "amount", "currency": {"code": "currency_code", "name": "currency_name"}},
+            "operationAmount": {
+                "amount": "amount",
+                "currency": {"code": "currency_code", "name": "currency_name"},
+            },
             "state": "state",
             "to": "to",
         }
@@ -46,7 +63,17 @@ def test_open_csv(mocked_csv):
 def test_open_csv1(mocked_csv):
     """Проверка пропуска первой строки"""
     mocked_csv.return_value = [
-        ["id", "state", "date", "amount", "currency_name", "currency_code", "from", "to", "description"]
+        [
+            "id",
+            "state",
+            "date",
+            "amount",
+            "currency_name",
+            "currency_code",
+            "from",
+            "to",
+            "description",
+        ]
     ]
     result = open_csv("transaction.csv")
     assert result == []
@@ -73,7 +100,12 @@ def test_read_xlsx_transactions(mock_read_excel):
         "amount": [100, 200, 300, 400],
         "currency_name": ["USD", "EUR", "RUB", "EU"],
         "currency_code": ["USD", "EUR", "Rub", "EU"],
-        "description": ["Test transaction", "Another transaction", "transaction", "Another"],
+        "description": [
+            "Test transaction",
+            "Another transaction",
+            "transaction",
+            "Another",
+        ],
         "from": ["Card_1", "Card_2", "Card_3", "Card_4"],
         "to": ["Card_5", "Card_5", "Card_5", "Card_5"],
     }
@@ -85,7 +117,10 @@ def test_read_xlsx_transactions(mock_read_excel):
         "id": 1,
         "state": "success",
         "date": "2022-01-01",
-        "operationAmount": {"amount": 100.0, "currency": {"name": "USD", "code": "USD"}},
+        "operationAmount": {
+            "amount": 100.0,
+            "currency": {"name": "USD", "code": "USD"},
+        },
         "description": "Test transaction",
         "from": "Card_1",
         "to": "Card_5",
@@ -94,7 +129,10 @@ def test_read_xlsx_transactions(mock_read_excel):
         "id": 2,
         "state": "failed",
         "date": "2022-01-02",
-        "operationAmount": {"amount": 200, "currency": {"name": "EUR", "code": "EUR"}},
+        "operationAmount": {
+            "amount": 200,
+            "currency": {"name": "EUR", "code": "EUR"},
+        },
         "description": "Another transaction",
         "from": "Card_2",
         "to": "Card_5",
@@ -105,7 +143,10 @@ def test_read_xlsx_transactions(mock_read_excel):
         "id": 4,
         "state": "failed",
         "date": "2022-01-02",
-        "operationAmount": {"amount": 400.0, "currency": {"name": "EU", "code": "EU"}},
+        "operationAmount": {
+            "amount": 400.0,
+            "currency": {"name": "EU", "code": "EU"},
+        },
         "description": "Another",
         "from": "Card_4",
         "to": "Card_5",

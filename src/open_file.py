@@ -8,8 +8,12 @@ import pandas as pd
 open_csv_logger = logging.getLogger("app.open_csv")
 open_excel_logger = logging.getLogger("app.open_excel")
 # Перезапись логов в файле
-file_handler = logging.FileHandler("logs\\open_file.log", mode="w", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+file_handler = logging.FileHandler(
+    "logs\\open_file.log", mode="w", encoding="utf-8"
+)
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 file_handler.setFormatter(file_formatter)
 # handler с уровнем логгирования DEBUG для функции get_mask_account
 open_csv_logger.addHandler(file_handler)
@@ -41,13 +45,17 @@ def open_csv(file_name: str) -> List[Dict[str, Any]] | str:
                         "id": row[0],
                         "state": row[1],
                         "date": row[2],
-                        "operationAmount": {"amount": row[3], "currency": {"name": row[4], "code": row[5]}},
+                        "operationAmount": {
+                            "amount": row[3],
+                            "currency": {"name": row[4], "code": row[5]},
+                        },
                         "description": row[8],
                         "from": row[6],
                         "to": row[7],
                     }
                     csv_list_dict.append(csv_dict)
-            # open_csv_logger.info(f"Первая строка {csv_list_dict[0]}") #с ней не проходят тесты, но работает программа
+            # с ней не проходят тесты, но работает программа
+            # open_csv_logger.info(f"Первая строка {csv_list_dict[0]}")
             return csv_list_dict
     except FileNotFoundError as e:
         open_csv_logger.error(f"Произошла ошибка: {e}")

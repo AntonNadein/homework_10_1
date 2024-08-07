@@ -21,7 +21,8 @@ def amount_transaction_rub(transaction: dict) -> float | str:
         else:
             API_KEY = os.getenv("API_KEY")
             to = "RUB"
-            url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={currency}&amount={amount}"
+            url = (f"https://api.apilayer.com/exchangerates_data/"
+                   f"convert?to={to}&from={currency}&amount={amount}")
             headers = {"apikey": API_KEY}
 
             response = requests.get(url, headers=headers)

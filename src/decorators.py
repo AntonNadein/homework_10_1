@@ -4,9 +4,10 @@ from typing import Any, Callable
 
 def log(filename: str = "console") -> Callable:
     """
-    Декоратор может логировать работу функции и ее результат как в файл, так и в консоль.
+    Декоратор логирует результат функции как в файл, так и в консоль.
     :param filename: Если параметр задан, логи записываются в указанный файл.
-    :return:Если вызов функции закончился ошибкой, записывается сообщение об ошибке и входные параметры функции
+    :return:Если вызов функции закончился ошибкой, записывается сообщение об
+    ошибке и входные параметры функции
     """
 
     def my_decorator(func: Callable) -> Callable:
@@ -26,7 +27,10 @@ def log(filename: str = "console") -> Callable:
                         return result
                     except Exception as e:
                         error_file = f"Error: {e}"
-                        file.write(f"{func.__name__}, {error_file}. Inputs:{args}, {kwargs}")
+                        file.write(
+                            f"{func.__name__}, {error_file}. "
+                            f"Inputs:{args}, {kwargs}"
+                        )
                         return error_file
 
         return wrapper

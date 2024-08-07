@@ -23,7 +23,9 @@ def test_amount_transaction_rub_currency(mocked_get, dict_external_api_usd):
     result = amount_transaction_rub(dict_external_api_usd)
     assert result == 800
     mocked_get.assert_called_once_with(
-        "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=100", headers={"apikey": API_KEY}
+        "https://api.apilayer.com/exchangerates_data/"
+        "convert?to=RUB&from=USD&amount=100",
+        headers={"apikey": API_KEY},
     )
 
 
