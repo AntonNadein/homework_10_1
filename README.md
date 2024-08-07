@@ -57,13 +57,18 @@ Homework_10 - это домашняя работа на Python для SkyPro в 
 12. Функция *amount_transaction_rub*, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях, 
 тип данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего 
 курса валют и конвертации суммы операции в рубли. Для конвертации валюты используется **Exchange Rates Data API**
+13. Функция *open_csv*, которая принимает на вход имя файла, с расширением .csv и возвращает список словарей 
+с данными о финансовых транзакциях.
+14. Функция *open_excel*, которая принимает на вход имя файла, с расширением .xlsx и возвращает список словарей 
+с данными о финансовых транзакциях.
 
 ## Тестирование:
 Добавлено логгирование функций в модулях *masks* и *utils*:
 Для тестироваия используйте файлы **[test_masks.py](tests%2Ftest_masks.py),
 [test_processing.py](tests%2Ftest_processing.py), [test_widget.py](tests%2Ftest_widget.py), 
 [test_generators.py](tests%2Ftest_generators.py), [test_decorators.py](tests%2Ftest_decorators.py), 
-[test_utils.py](tests%2Ftest_utils.py), [test_external_api.py](tests%2Ftest_external_api.py)**
+[test_utils.py](tests%2Ftest_utils.py), [test_external_api.py](tests%2Ftest_external_api.py),
+[test_open_file.py](tests%2Ftest_open_file.py) **
 test coverage [index.html](htmlcov%2Findex.html)
 
 ## Лицензия:

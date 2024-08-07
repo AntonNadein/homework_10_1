@@ -1,24 +1,25 @@
 import os
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 
-from src.external_api import amount_transaction_rub
 from dotenv import load_dotenv
 
+from src.external_api import amount_transaction_rub
+
 load_dotenv()
-API_KEY = os.getenv('API_KEY')
+API_KEY = os.getenv("API_KEY")
 
 
-@patch('requests.get')
+@patch("requests.get")
 def test_amount_transaction_rub(mocked_response, dict_external_api_usd):
     mocked_response.return_value.status_code = 201
     result = amount_transaction_rub(dict_external_api_usd)
-    assert result == 'Нет ответа'
+    assert result == "Нет ответа"
 
 
-@patch('requests.get')
+@patch("requests.get")
 def test_amount_transaction_rub_currency(mocked_get, dict_external_api_usd):
     mocked_get.return_value.status_code = 200
-    mocked_get.return_value.json.return_value = {'result': 800}
+    mocked_get.return_value.json.return_value = {"result": 800}
     result = amount_transaction_rub(dict_external_api_usd)
     assert result == 800
     mocked_get.assert_called_once_with(

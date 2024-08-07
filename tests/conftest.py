@@ -71,15 +71,9 @@ def dict_external_api_usd():
         "description": "Перевод организации",
         "from": "Maestro 1596837868705199",
         "id": 441945886,
-        "operationAmount": {
-            "amount": "100",
-            "currency": {
-                "code": "USD",
-                "name": "руб."
-            }
-        },
+        "operationAmount": {"amount": "100", "currency": {"code": "USD", "name": "руб."}},
         "state": "EXECUTED",
-        "to": "Счет 64686473678894779589"
+        "to": "Счет 64686473678894779589",
     }
 
 
@@ -90,13 +84,7 @@ def dict_external_api_rub():
         "description": "Перевод организации",
         "from": "Maestro 1596837868705199",
         "id": 441945886,
-        "operationAmount": {
-            "amount": "31957.58",
-            "currency": {
-                "code": "RUB",
-                "name": "руб."
-            }
-        },
+        "operationAmount": {"amount": "31957.58", "currency": {"code": "RUB", "name": "руб."}},
         "state": "EXECUTED",
-        "to": "Счет 64686473678894779589"
+        "to": "Счет 64686473678894779589",
     }
