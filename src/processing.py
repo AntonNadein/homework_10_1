@@ -1,12 +1,16 @@
 from typing import Any, Dict, List
 
 
-def filter_by_state(list_dict: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
+def filter_by_state(
+    list_dict: List[Dict[str, Any]], state: str = "EXECUTED"
+) -> List[Dict[str, Any]]:
     """
     Фильтрует список транзакций по заданному состоянию
     :param list_dict: Список словарей с данными о транзакциях.
-    :param state: Состояние транзакции для фильтрации (по умолчанию 'EXECUTED').
-    :return:Новый список, содержащий только те транзакции, у которых ключ 'state' равен переданному значению.
+    :param state: Состояние транзакции для фильтрации
+    (по умолчанию 'EXECUTED').
+    :return:Новый список, содержащий только те транзакции, у
+    которых ключ 'state' равен переданному значению.
     """
     new_list = []
 
@@ -16,12 +20,16 @@ def filter_by_state(list_dict: List[Dict[str, Any]], state: str = "EXECUTED") ->
     return new_list
 
 
-def sort_by_date(list_dict: List[Dict[str, Any]], sort_parameter: bool = True) -> List[Dict[str, Any]]:
+def sort_by_date(
+    list_dict: List[Dict[str, Any]], sort_parameter: bool = True
+) -> List[Dict[str, Any]]:
     """
     Сортирует список словарей по дате.
     :param list_dict: Список словарей с данными о транзакциях
-    :param sort_parameter: (по умолчанию) True сортировка по убыванию, иначе по возрастанию.
+    :param sort_parameter:True сортировка по убыванию, иначе по возрастанию.
     :return: Новый список, отсортированный по дате.
     """
-    sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=sort_parameter)
+    sorted_list = sorted(
+        list_dict, key=lambda x: x["date"], reverse=sort_parameter
+    )
     return sorted_list
