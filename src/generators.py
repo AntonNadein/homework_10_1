@@ -34,6 +34,8 @@ def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
     else:
         for number in range(start, stop + 1):
             number_str = f"{number:016}"
-            formatted_number = (f"{number_str[:4]} {number_str[4:8]}"
-                                f" {number_str[8:12]} {number_str[12:]}")
+            formatted_number = (
+                f"{number_str[:4]} {number_str[4:8]}"
+                f" {number_str[8:12]} {number_str[12:]}"
+            )
             yield formatted_number

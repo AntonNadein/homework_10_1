@@ -8,9 +8,8 @@ from src.open_file import open_csv, open_excel, path_to_file
 def test_path_to_file():
     """тест пути файла"""
     assert (
-        path_to_file("test.src")
-        == "C:\\Users\\Антон\\Desktop\\PyProject\\"
-           "homework_10_1\\src\\..\\data\\test.src"
+        path_to_file("test.src") == "C:\\Users\\Антон\\Desktop\\PyProject\\"
+        "homework_10_1\\src\\..\\data\\test.src"
     )
 
 
