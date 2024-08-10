@@ -1,4 +1,13 @@
-def while_true_question(question, answer_true, answer_false):
+def while_true_question(
+    question: str, answer_true: str, answer_false: str
+) -> str:
+    """
+    Функция логики вопроса "Да/Нет"
+    :param question: Вопрос на "Да/Нет"
+    :param answer_true: Первый ответ
+    :param answer_false: Второй ответ
+    :return: Первый | Второй ответ
+    """
     while True:
         string = (input(f"{question}: ")).lower()
         if string in [answer_true.lower()]:
@@ -11,7 +20,20 @@ def while_true_question(question, answer_true, answer_false):
             print(f"Введите {answer_true} или {answer_false}\n")
 
 
-def triple_question(question, answer_one, answer_two, answer_three):
+def triple_question(
+    question: str,
+    answer_one: str | int,
+    answer_two: str | int,
+    answer_three: str | int,
+) -> str | int:
+    """
+    Функция выбора из трех ответов
+    :param question: Вопрос или условие
+    :param answer_one: Первый ответ
+    :param answer_two: Второй ответ
+    :param answer_three: Третий ответ
+    :return: Первый | Второй | Третий ответ
+    """
     while True:
         string = input(f"{question}: ")
         if string.isdigit():
