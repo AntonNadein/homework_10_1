@@ -5,21 +5,24 @@ def mask_account_card(info_card: str) -> str:
     """Функция создает маски карт и счетов"""
     new_numbers = []
     new_name = []
-    info_card_list = info_card.split(" ")
-    for number in info_card_list:
-        if number.isdigit():
-            new_numbers.append(number)
-        elif number.isalpha():
-            new_name.append(number)
-    number_card_account_str = "".join(new_numbers)
-    len_number_card = len(number_card_account_str)
-    if len_number_card == 16:
-        mask_number = get_mask_card_number(int(number_card_account_str))
-    elif len_number_card == 20:
-        mask_number = get_mask_account(int(number_card_account_str))
+    if info_card == "" or info_card is None:
+        return ""
     else:
-        return "Введен неверный номер карты/счета"
-    return f'{" ".join(new_name)} {mask_number}'
+        info_card_list = info_card.split(" ")
+        for number in info_card_list:
+            if number.isdigit():
+                new_numbers.append(number)
+            elif number.isalpha():
+                new_name.append(number)
+        number_card_account_str = "".join(new_numbers)
+        len_number_card = len(number_card_account_str)
+        if len_number_card == 16:
+            mask_number = get_mask_card_number(int(number_card_account_str))
+        elif len_number_card == 20:
+            mask_number = get_mask_account(int(number_card_account_str))
+        else:
+            return "Введен неверный номер карты/счета"
+        return f'{" ".join(new_name)} {mask_number}'
 
 
 def get_date(dates: str) -> str:

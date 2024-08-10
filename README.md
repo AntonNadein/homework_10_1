@@ -1,11 +1,15 @@
-# Проект Homework_10
+# Проект: Сортировка банковых операций.
 
 ## Описание:
 
 Homework_10 - это домашняя работа на Python для SkyPro в которой реализуются функции, декораторы, генераторы.
 
 ## Использование:
-Запуск функционала производится при помощи файла *main.py*
+* Клонируем репозитроий *git@github.com:AntonNadein/homework_10_1.git*
+* Устанавливаем зависимоти **pyproject.toml**
+* В директории **data** заменяем файлы на идентичного содержания и структуры.
+* Запускаем функционал при помощи файла **main.py**
+
 
 ## Документация:
 
@@ -61,6 +65,9 @@ Homework_10 - это домашняя работа на Python для SkyPro в 
 с данными о финансовых транзакциях.
 14. Функция *open_excel*, которая принимает на вход имя файла, с расширением .xlsx и возвращает список словарей 
 с данными о финансовых транзакциях.
+15. Модуль *filttation* для сортировки списка словарей по заданным параметрам.
+16. Модуль *count_categories* для подсчета категорий банковских операций.
+17. Модуль *selection_cycles* для построения логики основного блока main.
 
 ## Тестирование:
 Добавлено логгирование функций в модулях *masks* и *utils*:
@@ -68,7 +75,9 @@ Homework_10 - это домашняя работа на Python для SkyPro в 
 [test_processing.py](tests%2Ftest_processing.py), [test_widget.py](tests%2Ftest_widget.py), 
 [test_generators.py](tests%2Ftest_generators.py), [test_decorators.py](tests%2Ftest_decorators.py), 
 [test_utils.py](tests%2Ftest_utils.py), [test_external_api.py](tests%2Ftest_external_api.py),
-[test_open_file.py](tests%2Ftest_open_file.py) **
+[test_open_file.py](tests%2Ftest_open_file.py), [test_count_categories.py](tests%2Ftest_count_categories.py)
+[test_filtration.py](tests%2Ftest_filtration.py), [test_selection_cycles.py](tests%2Ftest_selection_cycles.py)**
+
 test coverage [index.html](htmlcov%2Findex.html)
 
 ## Лицензия:
