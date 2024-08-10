@@ -5,6 +5,8 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
+from src.constant import PATH_TO_FILE
+
 open_csv_logger = logging.getLogger("app.open_csv")
 open_excel_logger = logging.getLogger("app.open_excel")
 # Перезапись логов в файле
@@ -22,11 +24,6 @@ open_excel_logger.addHandler(file_handler)
 open_excel_logger.setLevel(logging.DEBUG)
 
 
-def path_to_file(file_name: str) -> str:
-    """Возвращает универсальный абсолютный путь до папки data"""
-    return os.path.join(os.path.dirname(__file__), "..", "data", file_name)
-
-
 def open_csv(file_name: str) -> List[Dict[str, Any]] | str:
     """
     Преобразовывает csv файл в список словарей
@@ -35,7 +32,9 @@ def open_csv(file_name: str) -> List[Dict[str, Any]] | str:
     """
     csv_list_dict = []
     try:
-        with open(path_to_file(file_name), "r", encoding="utf-8") as file:
+        with open(
+            os.path.join(PATH_TO_FILE, file_name), "r", encoding="utf-8"
+        ) as file:
             open_csv_logger.info(f"Открываемый файл {file}")
             csv_data = csv.reader(file, delimiter=";")
             for row in csv_data:
@@ -70,13 +69,30 @@ def open_excel(file_name: str) -> List[Dict[str, Any]] | str:
     """
     list_dict_excel = []
     try:
-        file = path_to_file(file_name)
+        file = os.path.join(PATH_TO_FILE, file_name)
         open_excel_logger.info(f"Открываемый файл {file}")
         excel_data = pd.read_excel(file)
         for i in range(len(excel_data)):
             # проверка на пустую строку через отсутствие id
             if not pd.notna(excel_data.loc[i, "id"]):
                 continue
+            elif not pd.notna(excel_data.loc[i, "from"]):
+                id_dict = {
+                    "id": int(excel_data.loc[i, "id"]),
+                    "state": excel_data.loc[i, "state"],
+                    "date": excel_data.loc[i, "date"],
+                    "operationAmount": {
+                        "amount": float(excel_data.loc[i, "amount"]),
+                        "currency": {
+                            "name": excel_data.loc[i, "currency_name"],
+                            "code": excel_data.loc[i, "currency_code"],
+                        },
+                    },
+                    "description": excel_data.loc[i, "description"],
+                    "from": None,
+                    "to": excel_data.loc[i, "to"],
+                }
+                list_dict_excel.append(id_dict)
             else:
                 id_dict = {
                     "id": int(excel_data.loc[i, "id"]),

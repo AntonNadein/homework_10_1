@@ -1,4 +1,4 @@
-from src.filtration import filter_dictionary
+from src.filtration import filter_dictionary, filter_dictionary_description
 
 
 def test_filter_dictionary(dict_test_filter):
@@ -28,7 +28,7 @@ def test_filter_dictionary(dict_test_filter):
                 "amount": "8221.37",
                 "currency": {"name": "USD", "code": "USD"},
             },
-            "description": "Перевод организации",
+            "description": "Перевод с карты на карту",
             "from": "MasterCard 7158300734726758",
             "to": "Счет 35383033474447895560",
         }
@@ -42,7 +42,7 @@ def test_filter_dictionary(dict_test_filter):
                 "amount": "9824.07",
                 "currency": {"name": "USD", "code": "USD"},
             },
-            "description": "Перевод организации",
+            "description": "Открытие вклада",
             "from": "Счет 75106830613657916952",
             "to": "Счет 11776614605963066702",
         }
@@ -51,7 +51,9 @@ def test_filter_dictionary(dict_test_filter):
 
 def test_filter_dictionary_no_str(dict_test_filter):
     result = filter_dictionary(dict_test_filter, "")
+    result_2 = filter_dictionary_description(dict_test_filter, "")
     assert result == []
+    assert result_2 == []
 
 
 def test_filter_dictionary_dict_error():
@@ -72,7 +74,25 @@ def test_filter_dictionary_dict_error():
         ],
         "feds",
     )
+    result_2 = filter_dictionary_description(
+        [
+            {
+                "id": 441945886,
+                "state": "EXECUTED",
+                "date": "2019-08-26T10:50:58.294041",
+                "operationAmount": {
+                    "amount": "31957.58",
+                    "currency": {"name": "руб.", "code": "RUB"},
+                },
+                "description": "Перевод организации",
+                "from": "Maestro 1596837868705199",
+                "to": "Счет 64686473678894779589",
+            }
+        ],
+        "feds",
+    )
     assert result == []
+    assert result_2 == []
 
 
 def test_filter_dictionary_dict_error1():
@@ -93,4 +113,76 @@ def test_filter_dictionary_dict_error1():
         ],
         122,
     )
+    result_2 = filter_dictionary_description(
+        [
+            {
+                "id": 441945886,
+                "state": "",
+                "date": "2019-08-26T10:50:58.294041",
+                "operationAmount": {
+                    "amount": "31957.58",
+                    "currency": {"name": "руб.", "code": "RUB"},
+                },
+                "description": "Перевод организации",
+                "from": "Maestro 1596837868705199",
+                "to": "Счет 64686473678894779589",
+            }
+        ],
+        122,
+    )
     assert result == "Неожиданный тип данных"
+    assert result_2 == "Неожиданный тип данных"
+
+
+def test_filter_dictionary_description(dict_test_filter):
+    result = filter_dictionary_description(
+        dict_test_filter, "ПеревоД организацИИ"
+    )
+    result_can = filter_dictionary_description(
+        dict_test_filter, "Перевод с каРты на каРту"
+    )
+    result_pen = filter_dictionary_description(
+        dict_test_filter, "ОткРытИе вклаДа"
+    )
+    assert result == [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {
+                "amount": "31957.58",
+                "currency": {"name": "руб.", "code": "RUB"},
+            },
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        }
+    ]
+    assert result_can == [
+        {
+            "id": 41428829,
+            "state": "CANCELED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {
+                "amount": "8221.37",
+                "currency": {"name": "USD", "code": "USD"},
+            },
+            "description": "Перевод с карты на карту",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
+    assert result_pen == [
+        {
+            "id": 939719570,
+            "state": "PENDING",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {
+                "amount": "9824.07",
+                "currency": {"name": "USD", "code": "USD"},
+            },
+            "description": "Открытие вклада",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        }
+    ]

@@ -2,15 +2,7 @@ from unittest.mock import mock_open, patch
 
 import pandas as pd
 
-from src.open_file import open_csv, open_excel, path_to_file
-
-
-def test_path_to_file():
-    """тест пути файла"""
-    assert (
-        path_to_file("test.src") == "C:\\Users\\Антон\\Desktop\\PyProject\\"
-        "homework_10_1\\src\\..\\data\\test.src"
-    )
+from src.open_file import open_csv, open_excel
 
 
 def test_error_open_csv():
@@ -105,7 +97,7 @@ def test_read_xlsx_transactions(mock_read_excel):
             "transaction",
             "Another",
         ],
-        "from": ["Card_1", "Card_2", "Card_3", "Card_4"],
+        "from": ["Card_1", "Card_2", "Card_3", None],
         "to": ["Card_5", "Card_5", "Card_5", "Card_5"],
     }
     df = pd.DataFrame(data)
@@ -147,6 +139,6 @@ def test_read_xlsx_transactions(mock_read_excel):
             "currency": {"name": "EU", "code": "EU"},
         },
         "description": "Another",
-        "from": "Card_4",
+        "from": None,
         "to": "Card_5",
     }
